@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %} {{ title }} :: {{ block.super }} {% endblock %}
+{% block title %} Поиск :: {{ block.super }} {% endblock %}
 
 {% block content %}
 <section class="blog-post-area">
@@ -30,7 +30,27 @@
         </div>
     </div>
 
-    {% include 'inc/_paginations.html' %}
+
+{% if page_obj.has_other_pages %}
+<div class="pegination">
+    <div class="nav-links">
+
+        {% for p in page_obj.paginator.page_range %}
+            {% if page_obj.number == p %}
+            <span class="page-numbers current">{{ p }}</span>
+            {% elif p > page_obj.number|add:-3 and p < page_obj.number|add:+3 %}
+            <a class="page-numbers" href="?{{ s }}page={{ p }}">{{ p }}</a>
+            {% endif %}
+        {% endfor %}
+
+
+        {% if page_obj.has_next %}
+        <a class="page-numbers" href="?page={{ page_obj.next_page_number }}"><i class="fa fa-angle-right" aria-hidden="true"></i></a>
+        {% endif %}
+
+    </div>
+    {% endif %}
+</div>
 
 </section>
 {% endblock %}
