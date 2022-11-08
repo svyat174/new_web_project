@@ -162,3 +162,4 @@ cython_debug/
 /static/
 /django_cache/be7c5c70635fbc5edcce3cd5bc69af35.djcache
 /django_cache/c7992ab6d96eef92fdffdac20b764b53.djcache
+/django_cache/
